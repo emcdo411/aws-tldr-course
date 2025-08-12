@@ -120,7 +120,132 @@ flowchart LR
 ```
 
 ---
+Here’s a **clear, copy-and-share-ready “Getting Started” section** you can drop straight into your repo’s README (or send to clients) so they know exactly how to set this up locally.
 
+---
+
+## 🛠 Getting Started — Local & Client Setup
+
+### **1️⃣ Prerequisites**
+
+Before you or your clients start, make sure the following are in place:
+
+| Requirement        | Details                                                                             | Install Link                                                                              |
+| ------------------ | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **AWS Account**    | **AdministratorAccess** permissions (learning only — tighten later for production). | [AWS Signup](https://aws.amazon.com/)                                                     |
+| **Git**            | Latest stable release.                                                              | [Download Git](https://git-scm.com/downloads)                                             |
+| **Node.js LTS**    | Recommended for AWS CDK and any Node examples.                                      | [Download Node.js LTS](https://nodejs.org/en/)                                            |
+| **Python 3.11+**   | For Python SDK (Boto3) examples.                                                    | [Download Python](https://www.python.org/downloads/)                                      |
+| **AWS CLI v2**     | Command-line access to AWS.                                                         | [Install AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) |
+| **AWS CDK v2**     | Infrastructure as Code.                                                             | [Install AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/work-with.html)                |
+| **GitHub Account** | To pull/push code.                                                                  | [Sign Up GitHub](https://github.com/)                                                     |
+
+---
+
+### **2️⃣ Configure AWS Authentication**
+
+Choose **one** method:
+
+#### **Option A — AWS SSO (Recommended)**
+
+```powershell
+aws configure sso
+```
+
+Follow prompts to sign in to your AWS SSO portal, pick your account, and choose a role.
+
+#### **Option B — Access Keys**
+
+```powershell
+aws configure
+```
+
+Enter:
+
+* Access Key ID
+* Secret Access Key
+* Default region (e.g., `us-east-1`)
+* Output format (`json`)
+
+✅ **Test Your Auth**
+
+```powershell
+aws sts get-caller-identity
+```
+
+You should see your **Account ID**, **User ARN**, and **AWS Account**.
+
+---
+
+### **3️⃣ Clone the Repo**
+
+```powershell
+cd C:\Users\<YourUsername>\
+git clone https://github.com/emcdo411/aws-tldr-course.git
+cd aws-tldr-course
+```
+
+---
+
+### **4️⃣ Install Dependencies**
+
+**CDK (Node.js global package):**
+
+```powershell
+npm install -g aws-cdk
+```
+
+**Optional Python environment:**
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install boto3
+```
+
+---
+
+### **5️⃣ Initialize the Folder Structure**
+
+Run the included script to create all folders/subfolders with `.gitkeep` files:
+
+```powershell
+pwsh scripts\init-folders.sh
+```
+
+*(If running on Windows without bash, just create manually or use the provided PowerShell scaffold script.)*
+
+---
+
+### **6️⃣ Verify GitHub Remote**
+
+```powershell
+git remote -v
+```
+
+It should show:
+
+```
+origin  https://github.com/emcdo411/aws-tldr-course.git (fetch)
+origin  https://github.com/emcdo411/aws-tldr-course.git (push)
+```
+
+---
+
+### **7️⃣ Costs & Cleanup**
+
+⚠️ **Most labs use the AWS Free Tier**, but:
+
+* **Always delete** stacks, instances, and buckets after each section.
+* Run:
+
+```powershell
+pwsh scripts\cleanup-all.sh
+```
+
+*(Edit the script with the correct cleanup commands per section.)*
+
+---
 ## 📚 Lesson Plan (TL;DR)
 
 ### Section 0 — Local Setup
